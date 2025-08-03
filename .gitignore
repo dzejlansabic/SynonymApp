@@ -46,6 +46,8 @@ artifacts/
 # Node modules
 node_modules/
 
+appsettings.Production.json
+
 # Build output
 build/
 dist/
