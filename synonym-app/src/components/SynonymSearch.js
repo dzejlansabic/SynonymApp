@@ -8,8 +8,7 @@ const SynonymSearch = () => {
 
 	const search = async () => {
 		setError('');
-		axios
-			.get(`${process.env.REACT_APP_API_URL}/synonyms/${word}`)
+		axios.get(`${process.env.REACT_APP_API_URL}/synonyms/${word}`)
 			.then(res => {
 				setResults(res.data);
 			})

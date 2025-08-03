@@ -16,8 +16,7 @@ const SynonymForm = () => {
 			.map(s => s.trim())
 			.filter(s => s.length > 0);
 
-		axios
-			.post(`${process.env.REACT_APP_API_URL}/synonyms`, {
+		axios.post(`${process.env.REACT_APP_API_URL}/synonyms`, {
 				word,
 				synonym: synonymList,
 			})
