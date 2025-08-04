@@ -12,6 +12,7 @@ namespace SynonymAPI.Controllers
         {
             _synonymService = synonymService;
         }
+
         [HttpGet("synonyms/{word}")]
         public async Task<IActionResult> GetSynonyms(string word)
         {
@@ -49,40 +50,5 @@ namespace SynonymAPI.Controllers
             }
         }
 
-        //[HttpPost("synonyms")]
-        //public async Task<IActionResult> AddSynonym([FromBody] SynonymRequest request)
-        //{
-        //    try
-        //    {
-        //        await _synonymService.AddSynonymAsync(request.Word, request.Synonym);
-        //        return NoContent();
-        //    }
-        //    catch (ArgumentException ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
-        //    catch (InvalidOperationException ex)
-        //    {
-        //        return Conflict(ex.Message);
-        //    }
-        //}
-
-        [HttpGet("words/{word}")]
-        public async Task<IActionResult> GetOrCreateWord(string word)
-        {
-            try
-            {
-                var wordEntity = await _synonymService.GetOrCreateWordAsync(word);
-                if (wordEntity == null)
-                {
-                    return NotFound();
-                }
-                return Ok(wordEntity);
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
     }
 }

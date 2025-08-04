@@ -5,7 +5,7 @@ using SynonymAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var frontendUrl = builder.Configuration["FrontendUrl"];
+var frontendUrl = builder.Configuration["FrontendUrl"] ?? "localhost:3000";
 
 // Add CORS
 builder.Services.AddCors(options =>

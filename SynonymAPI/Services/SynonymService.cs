@@ -12,6 +12,7 @@ namespace SynonymAPI.Services
         {
             _wordRepository = wordRepository;
         }
+
         public async Task<Word?> GetOrCreateWordAsync(string wordText)
         {
             if (string.IsNullOrWhiteSpace(wordText))
@@ -20,6 +21,7 @@ namespace SynonymAPI.Services
             }
             return await _wordRepository.GetOrCreateWordAsync(wordText);
         }
+
         public async Task<List<WordDTO>> GetSynonymsAsync(string word)
         {
             if (string.IsNullOrWhiteSpace(word))
@@ -30,14 +32,6 @@ namespace SynonymAPI.Services
             return synonyms;
         }
 
-        //public async Task AddSynonymAsync(string word, string synonym)
-        //{
-        //    if (string.IsNullOrWhiteSpace(word) || string.IsNullOrWhiteSpace(synonym))
-        //    {
-        //        throw new ArgumentException("Word and synonym cannot be null or empty.");
-        //    }
-        //    await _wordRepository.AddSynonymAsync(word, synonym);
-        //}
 
         public async Task AddSynonymsAsync(string word, List<string> synonyms)
         {

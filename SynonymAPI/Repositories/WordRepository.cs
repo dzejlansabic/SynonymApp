@@ -25,39 +25,6 @@ namespace SynonymAPI.Repositories
             return word;
         }
 
-        //public async Task AddSynonymAsync(string word, string synonym)
-        //{
-        //    var wordEntity = await GetOrCreateWordAsync(word);
-        //    var synonymEntity = await GetOrCreateWordAsync(synonym);
-
-        //    if (wordEntity == null || synonymEntity == null)
-        //        throw new InvalidOperationException("Failed to create or retrieve word or synonym.");
-
-        //    if (wordEntity.Text == synonymEntity.Text)
-        //        throw new InvalidOperationException("A word cannot be its own synonym.");
-
-        //    int wordRootId = wordEntity.MainSynonymId ?? wordEntity.Id;
-        //    int synonymRootId = synonymEntity.MainSynonymId ?? synonymEntity.Id;
-
-        //    if (wordRootId == synonymRootId)
-        //        return; 
-
-        //    int newRootId = synonymRootId;
-        //    int oldRootId = wordRootId;
-
-        //    var wordsToUpdate = await _context.Words
-        //        .Where(w => w.MainSynonymId == oldRootId || w.Id == oldRootId)
-        //        .ToListAsync();
-
-        //    foreach (var w in wordsToUpdate)
-        //        w.MainSynonymId = newRootId;
-
-        //    if (wordEntity.MainSynonymId != newRootId)
-        //        wordEntity.MainSynonymId = newRootId;
-
-        //    await _context.SaveChangesAsync();
-        //}
-
         public async Task AddSynonymsAsync(string word, List<string> synonyms)
         {
             if (string.IsNullOrWhiteSpace(word))
@@ -86,7 +53,6 @@ namespace SynonymAPI.Repositories
                 if (wordRootId == synonymRootId)
                     continue;
 
-                // Merge groups: unify synonyms under one root
                 int newRootId = wordRootId;
                 int oldRootId = synonymRootId;
 
